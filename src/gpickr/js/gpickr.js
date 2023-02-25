@@ -13,6 +13,7 @@ const { on, off } = utils;
 class GPickr {
   // Gradient props
   _stops = [];
+  _default = "#0000ff";
   _eventBindings = [];
   // Liniear angle
   _angle = 0;
@@ -47,15 +48,7 @@ class GPickr {
   };
 
   constructor(opt) {
-    opt = Object.assign(
-      {
-        stops: [
-          ["#42445a", 0],
-          ["#20b6dd", 1],
-        ],
-      },
-      opt
-    );
+    opt = Object.assign(opt);
 
     // Build dom
     this._root = buildGPickr(opt);
@@ -114,6 +107,10 @@ class GPickr {
           this._bindEvents();
           this._emit("init", this);
         });
+    } else {
+      this._pickr.on("init", () => {
+        this._pickr?.setColor(opt.default);
+      });
     }
   }
 

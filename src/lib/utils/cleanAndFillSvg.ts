@@ -1,11 +1,12 @@
-import { SVG } from "@svgdotjs/svg.js";
+import { Svg, SVG } from "@svgdotjs/svg.js";
+import { cssPositionToPercent } from "./cssPositionToPercent";
 
 export function cleanAndFillSvg(
   svgString: string,
   fillType: "solid" | "gradient",
   fill: any
 ) {
-  const svg = SVG(svgString);
+  const svg = SVG(svgString) as unknown as Svg;
   const children = svg.children();
   let selectedFill: any = fill;
 
@@ -22,15 +23,19 @@ export function cleanAndFillSvg(
   });
 
   if (fillType === "gradient") {
-    const gradient = svg
-      // @ts-ignore
-      .gradient(fill.mode, function (add) {
-        fill.stops.forEach((stop) => {
-          add.stop({ ...stop });
-        });
+    const gradient = svg.gradient(fill.mode, function (add) {
+      fill.stops.forEach((stop) => {
+        add.stop({ ...stop });
       });
+    });
 
-    gradient.attr("gradientTransform", `rotate(${fill.angle} 0.5 0.5)`);
+    if (fill.mode === "radial") {
+      const position = cssPositionToPercent(fill.direction);
+      gradient.attr("cx", position.cx + "%");
+      gradient.attr("cy", position.cy + "%");
+    } else {
+      gradient.attr("gradientTransform", `rotate(${fill.angle} 0.5 0.5)`);
+    }
 
     selectedFill = gradient;
   }

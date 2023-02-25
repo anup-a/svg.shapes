@@ -1,8 +1,20 @@
 <script>
   import Editor from "./Editor.svelte";
-  import { initSVGs } from "./utils/loadSVGs";
+  import { initSVGs, loadSVG } from "./utils/loadSVGs";
+  import { selectedSvg } from "./store/store";
+  import { gsap } from "gsap";
+  import ScrollToPlugin from "gsap/dist/ScrollToPlugin";
 
   const svgs = initSVGs(false);
+  gsap.registerPlugin(ScrollToPlugin);
+
+  const scrollToTop = () =>
+    gsap.to(window, { scrollTo: { y: 0, autoKill: true } });
+
+  function handleChange(file) {
+    selectedSvg.update((_) => file);
+    scrollToTop();
+  }
 </script>
 
 <div class="main-container">
@@ -10,7 +22,11 @@
   <Editor />
   <div class="svg-grid">
     {#each svgs as file}
-      <div class="svg-item">
+      <div
+        class="svg-item"
+        on:click={() => handleChange(file)}
+        on:keydown={() => handleChange(file)}
+      >
         {@html file.svg()}
       </div>
     {/each}

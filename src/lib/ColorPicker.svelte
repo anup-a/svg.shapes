@@ -12,12 +12,20 @@
   let left: number;
   let view: "solid" | "gradient" = "gradient";
   let colorPicker;
+  let stops;
+  let color;
 
   const initPosition = () =>
     ({ bottom, left } = anchor?.getBoundingClientRect() ?? {
       bottom: 0,
       left: 0,
     });
+
+  fill.subscribe((_) => {
+    view = _.type;
+    stops = _.gradient._stops.map((c) => [c.color, c.loc]);
+    color = _.color;
+  });
 
   const showColorPicker = (selector: string) => {
     if (!visible) return;
@@ -27,10 +35,8 @@
     let pickerSettings = {
       el: selector,
       disableGradient: view === "solid",
-      stops: [
-        ["rgb(255,132,109)", 0],
-        ["rgb(255,136,230)", 1],
-      ],
+      stops,
+      default: color,
     };
 
     colorPicker = new ColorPicker(pickerSettings);
@@ -40,12 +46,14 @@
           fill.update((f) => ({
             ...f,
             color: color.getColor().toRGBA().toString(0),
+            type: "solid",
           }));
         })
         .on("change", (color) => {
           fill.update((f) => ({
             ...f,
             color: color.toRGBA().toString(0),
+            type: "solid",
           }));
         });
     } else {
@@ -53,13 +61,15 @@
         .on("init", (color) => {
           fill.update((f) => ({
             ...f,
-            gradient: color,
+            gradient: { ...color, _raw: color.getGradient() },
+            type: "gradient",
           }));
         })
         .on("change", (color) => {
           fill.update((f) => ({
             ...f,
-            gradient: color,
+            gradient: { ...color, _raw: color.getGradient() },
+            type: "gradient",
           }));
         });
     }
@@ -141,6 +151,16 @@
     display: none;
   }
 
+  :global(.pcr-app) {
+    background: unset;
+  }
+
+  :global(
+      .pcr-app.pcr-app .pcr-selection .pcr-color-preview .pcr-current-color
+    ) {
+    border-radius: unset;
+  }
+
   .popover {
     position: fixed;
     inset: 0;
@@ -150,11 +170,11 @@
   .backdrop {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.3);
   }
 
   .wrapper {
     position: absolute;
+    border: 1px solid rgba(255, 255, 255, 0.25);
 
     top: calc(var(--popover-top) + 10px);
     left: var(--popover-left);
@@ -178,6 +198,7 @@
     width: 100%;
     margin: 0;
     padding: 0;
+    max-width: 254px;
   }
   .mode-switch * {
     flex-grow: 1;
@@ -187,12 +208,12 @@
     margin: 0;
     cursor: pointer;
     border-radius: 4px;
-    background-color: white;
-    color: black;
+    background-color: #3d4042;
+    color: white;
     margin-bottom: 1em;
+    border: 1px solid rgba(255, 255, 255, 0.25);
   }
   .mode-switch :not(.active) {
     background-color: black;
-    color: white;
   }
 </style>

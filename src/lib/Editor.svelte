@@ -1,22 +1,31 @@
 <script lang="ts">
   import svgSource from "./../assets/svg.json";
   import DownloadIcon from "./../assets/download.svg";
-  import { SVG } from "@svgdotjs/svg.js";
+  import type { Element, Svg } from "@svgdotjs/svg.js";
   import ColorPicker from "./ColorPicker.svelte";
   import { fill } from "./store/store";
   import { cleanAndFillSvg } from "./utils/cleanAndFillSvg";
   import { parseGradient } from "./utils/parseGradient";
+  import { selectedSvg } from "./store/store";
+  import { loadSVG } from "./utils/loadSVGs";
+  import Background from "./Background.svelte";
 
   let visible = false;
+  let index = 42; // answer to life the universe and everything
+  let svg: Svg;
+  let cssFill;
 
-  let svg;
+  selectedSvg.subscribe((s) => {
+    svg = s;
+  });
 
   // apply svg fill whenever the selected color changes
-  fill.subscribe((val) => {
+  fill.subscribe((_) => {
+    cssFill = _.type === "solid" ? _.color : _.gradient._raw;
     svg = cleanAndFillSvg(
-      Object.entries(svgSource)[0][1],
-      "gradient",
-      parseGradient(val.gradient)
+      Object.entries(svgSource)[index][1],
+      _.type,
+      _.type === "solid" ? _.color : parseGradient(_.gradient)
     );
   });
 
@@ -44,7 +53,7 @@
     >
       <p>Fill</p>
       <div class="action-icon">
-        <div class="color-box" />
+        <div class="color-box" style="background:{cssFill};" />
       </div>
     </div>
     <!-- svelte-ignore a11y-click-events-have-key-events -->

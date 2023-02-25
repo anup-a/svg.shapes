@@ -2,7 +2,14 @@ import { Svg, SVG } from "@svgdotjs/svg.js";
 import presets from "./../../assets/presets.json";
 import svgSource from "./../../assets/svg.json";
 
-export function initSVGs(flushDefinitions: boolean = true) {
+export function loadSVG(rawSvg) {
+  return SVG(rawSvg) as unknown as Svg;
+}
+
+export function initSVGs(
+  flushDefinitions: boolean = true,
+  resize: boolean = true
+) {
   return Object.entries(svgSource).map(([name, string]) => {
     const svg = SVG(string) as unknown as Svg;
     const children = svg.children();
@@ -12,6 +19,11 @@ export function initSVGs(flushDefinitions: boolean = true) {
     });
 
     flushDefinitions && defs?.at(0)?.remove();
+
+    if (resize) {
+      svg.width(200);
+      svg.height(200);
+    }
 
     if (flushDefinitions || !defs.length) {
       const elements = children.filter((child) => {
