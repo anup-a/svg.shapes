@@ -1,0 +1,198 @@
+@import "@simonwep/pickr/src/scss/themes/nano";
+@import "@simonwep/pickr/src/scss/lib/variables";
+@import "sassyfication";
+@import "pickr";
+
+.gpickr {
+  @include inline-flex(row);
+  box-shadow: $box-shadow-app;
+  border-radius: 4px;
+  // overflow: hidden;
+  font-family: $font-family;
+  user-select: none;
+  max-width: 100vw;
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  button {
+    border: none;
+    outline: none;
+    background: initial;
+    cursor: pointer;
+  }
+
+  .gpcr-interaction {
+    @include flex(column);
+    margin-left: 0.5em;
+    width: 12.5em;
+    z-index: 1;
+
+    .gpcr-result {
+      @include size(100%, 7.9em);
+      @include transparency-background(8px);
+      position: relative;
+      border-radius: 4px;
+      margin-bottom: 0.5em;
+      flex-grow: 1;
+
+      .gpcr-pos,
+      .gpcr-angle {
+        @include position(0, 0, 0, 0);
+        transition: all 0.3s;
+        position: absolute;
+        margin: auto;
+        opacity: 0.25;
+      }
+
+      .gpcr-angle {
+        @include size(0.35em);
+        background: white;
+        border-radius: 100%;
+
+        > div {
+          @include size(2em, 2px);
+          @include position(0, 0, 0, 50%);
+          position: absolute;
+          background: white;
+          border-radius: 1em;
+          margin: auto 0;
+          transform-origin: left;
+        }
+
+        &.gpcr-active {
+          opacity: 1;
+        }
+      }
+
+      .gpcr-pos {
+        @include size(5em);
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        opacity: 1;
+
+        > div {
+          @include size(15px);
+          border: 2px solid transparent;
+          position: relative;
+          margin: auto;
+          transition: all 0.3s;
+
+          &:not(.gpcr-active) {
+            cursor: pointer;
+          }
+
+          &::before {
+            @include pseudo();
+            @include position(0, 0, 0, 0);
+            @include size(5px);
+            border-radius: 100%;
+            background: white;
+            transition: all 0.3s;
+            opacity: 0.25;
+            margin: auto;
+          }
+
+          &:hover::before {
+            opacity: 1;
+          }
+
+          &.gpcr-active {
+            border-color: white;
+            border-radius: 100%;
+
+            &::before {
+              opacity: 1;
+            }
+          }
+        }
+      }
+
+      &:hover .gpcr-angle {
+        opacity: 1;
+      }
+    }
+
+    .gpcr-mode {
+      @include size(1.5em);
+      position: relative;
+      top: 0.15em;
+      left: 0.15em;
+      border: 2px solid white;
+      border-radius: 4px;
+      cursor: pointer;
+      opacity: 0.25;
+      transition: all 0.3s;
+
+      &::before {
+        @include pseudo();
+        @include position(0, 0, 0, 0);
+        margin: auto;
+        transition: all 0.3s;
+      }
+
+      &[data-mode="linear"]::before {
+        @include size(70%, 2px);
+        background: white;
+        transform: rotate(45deg);
+        border-radius: 50em;
+      }
+
+      &[data-mode="radial"]::before {
+        @include size(50%);
+        border-radius: 100%;
+        border: 2px solid white;
+      }
+
+      &[data-mode="conic"]::before {
+        @include size(0);
+        border: 5px solid transparent;
+        border-color: white white transparent transparent;
+      }
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  .gpcr-stops {
+    margin-bottom: 0.75em;
+
+    .gpcr-stop-preview {
+      @include size(100%, 2em);
+      @include transparency-background(8px);
+      position: relative;
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .gpcr-stop-marker {
+      position: relative;
+      z-index: 1;
+
+      .gpcr-marker {
+        @include size(12px);
+        @include transparency-background(4px);
+        position: absolute;
+        background: currentColor;
+        margin: 0.15em 0 0 -5px;
+        border-radius: 100%;
+        border: 2px solid white;
+        box-shadow: 0 0.05em 0.2em rgba(black, 0.15);
+        transition: opacity 0.15s;
+        cursor: grab;
+        cursor: webkit-grab;
+
+        &::before {
+          border-radius: 100%;
+        }
+      }
+    }
+  }
+}

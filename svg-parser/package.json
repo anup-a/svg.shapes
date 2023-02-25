@@ -1,0 +1,29 @@
+{
+  "name": "svg-parser",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"pnpm run watch-compile\" \"pnpm run watch-dev\"",
+    "watch-compile": "swc src -w --out-dir dist",
+    "watch-dev": "nodemon --watch \"dist/**/*\" -e js ./dist/index.js",
+    "build": "swc src -d dist",
+    "start": "NODE_ENV=production node dist/index.js",
+    "clean": "rm -rf dist",
+    "move": "cp factory/output/svg.json ./../src/assets/",
+    "job": "pnpm run start && pnpm run move"
+  },
+  "keywords": [],
+  "author": "Anup Aglawe",
+  "license": "ISC",
+  "dependencies": {
+    "svg-parser": "^2.0.4"
+  },
+  "devDependencies": {
+    "@swc/cli": "^0.1.60",
+    "@swc/core": "^1.3.32",
+    "@types/svg-parser": "^2.0.3",
+    "concurrently": "^7.6.0",
+    "nodemon": "^2.0.20"
+  }
+}

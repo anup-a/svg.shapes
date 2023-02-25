@@ -1,0 +1,28 @@
+.pcr-app.pcr-app {
+  box-shadow: none;
+
+  .pcr-selection {
+    .pcr-picker {
+      @include size(18px);
+    }
+
+    .pcr-color-preview {
+      margin-left: 0;
+
+      .pcr-current-color {
+        border-radius: 4px;
+        width: 100%;
+      }
+    }
+
+    .pcr-color-chooser,
+    .pcr-color-opacity {
+      margin-left: 0;
+    }
+  }
+
+  .pcr-interaction {
+    padding: 0;
+    margin-bottom: 0;
+  }
+}

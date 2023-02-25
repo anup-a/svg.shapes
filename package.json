@@ -1,0 +1,30 @@
+{
+  "name": "svg-shapes",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "svelte-check --tsconfig ./tsconfig.json"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^2.0.2",
+    "@tsconfig/svelte": "^3.0.0",
+    "sass": "^1.58.0",
+    "sassyfication": "^1.0.3",
+    "svelte": "^3.55.1",
+    "svelte-check": "^2.10.3",
+    "tslib": "^2.5.0",
+    "typescript": "^4.9.4",
+    "vite": "^4.0.4"
+  },
+  "dependencies": {
+    "@simonwep/pickr": "1.4.5",
+    "@svgdotjs/svg.js": "^3.1.2",
+    "gsap": "^3.11.4",
+    "nanopop": "^2.2.0",
+    "svelte-tilt": "^0.0.3"
+  }
+}
