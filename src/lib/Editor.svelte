@@ -3,7 +3,7 @@
   import DownloadIcon from "./../assets/download.svg";
   import { SVG } from "@svgdotjs/svg.js";
   import ColorPicker from "./ColorPicker.svelte";
-  import { fill } from "./store/properties";
+  import { fill } from "./store/store";
   import { cleanAndFillSvg } from "./utils/cleanAndFillSvg";
   import { parseGradient } from "./utils/parseGradient";
 
@@ -11,7 +11,7 @@
 
   let svg;
 
-  // whenever the selected color changes
+  // apply svg fill whenever the selected color changes
   fill.subscribe((val) => {
     svg = cleanAndFillSvg(
       Object.entries(svgSource)[0][1],
