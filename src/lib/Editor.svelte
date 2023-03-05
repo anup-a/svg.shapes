@@ -25,14 +25,6 @@
       _.type,
       _.type === "solid" ? _.color : parseGradient(_.gradient)
     );
-    // @ts-ignore
-  });
-
-  onMount(async () => {
-    // @ts-ignore
-    await import("./../svg.select.js/svg.select.min").default;
-    // @ts-ignore
-    svg.selectize();
   });
 
   let anchor: HTMLElement | undefined = undefined;
