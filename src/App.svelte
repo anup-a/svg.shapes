@@ -1,9 +1,12 @@
 <script lang="ts">
   import Background from "./lib/Background.svelte";
   import Content from "./lib/Content.svelte";
+  import "./../lib/webcomponent/float-menu";
 </script>
 
 <main id="main">
+  <float-menu id="float-menu" isDark={true} />
+
   <Background />
   <Content />
 </main>
@@ -18,5 +21,13 @@
     width: 100%;
     height: 100%;
     /* position: relative; */
+  }
+
+  #float-menu {
+    position: absolute;
+    z-index: 100;
+    display: block;
+    height: 0;
+    top: 0;
   }
 </style>

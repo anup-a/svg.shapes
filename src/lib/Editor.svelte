@@ -1,17 +1,15 @@
 <script lang="ts">
-  import svgSource from "./../assets/svg.json";
+  import type { Svg } from "@svgdotjs/svg.js";
+
   import DownloadIcon from "./../assets/download.svg";
-  import type { Element, Svg } from "@svgdotjs/svg.js";
   import ColorPicker from "./ColorPicker.svelte";
-  import { fill } from "./store/store";
+  import { fill, selectedSvg } from "./store/store";
   import { cleanAndFillSvg } from "./utils/cleanAndFillSvg";
   import { parseGradient } from "./utils/parseGradient";
-  import { selectedSvg } from "./store/store";
-  import { loadSVG } from "./utils/loadSVGs";
-  import Background from "./Background.svelte";
+  import { onMount } from "svelte";
+  import { saveSVG } from "./utils/saveSVG";
 
   let visible = false;
-  let index = 42; // answer to life the universe and everything
   let svg: Svg;
   let cssFill;
 
@@ -23,10 +21,18 @@
   fill.subscribe((_) => {
     cssFill = _.type === "solid" ? _.color : _.gradient._raw;
     svg = cleanAndFillSvg(
-      Object.entries(svgSource)[index][1],
+      svg,
       _.type,
       _.type === "solid" ? _.color : parseGradient(_.gradient)
     );
+    // @ts-ignore
+  });
+
+  onMount(async () => {
+    // @ts-ignore
+    await import("./../svg.select.js/svg.select.min").default;
+    // @ts-ignore
+    svg.selectize();
   });
 
   let anchor: HTMLElement | undefined = undefined;
@@ -43,11 +49,15 @@
   {/if}
 
   <div class="btn-container">
-    <!-- svelte-ignore a11y-click-events-have-key-events -->
     <div
       class="btn"
       bind:this={anchor}
+      role="button"
+      tabindex="0"
       on:click={(e) => {
+        visible = true;
+      }}
+      on:keydown={(e) => {
         visible = true;
       }}
     >
@@ -56,19 +66,14 @@
         <div class="color-box" style="background:{cssFill};" />
       </div>
     </div>
-    <!-- svelte-ignore a11y-click-events-have-key-events -->
+
     <div
       class="btn"
-      on:click={(e) => {
-        visible = true;
-      }}
+      on:click={() => saveSVG(svg.svg(), "image/svg+xml", "asset")}
+      on:keydown={() => saveSVG(svg.svg(), "image/svg+xml", "asset")}
+      role="button"
+      tabindex="0"
     >
-      <p>Outline</p>
-      <div class="action-icon">
-        <div class="color-box" />
-      </div>
-    </div>
-    <div class="btn">
       <p>Save</p>
       <div class="action-icon">
         <img src={DownloadIcon} alt="download icon" />
@@ -107,6 +112,7 @@
 
   :global(.svg-image svg) {
     transition: all 0.5s ease-in-out;
+    cursor: pointer;
   }
 
   :global(.svg-image svg:hover) {

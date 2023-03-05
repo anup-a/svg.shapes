@@ -94,7 +94,6 @@
 
 <svelte:window on:resize={initPosition} />
 
-<!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
   role="dialog"
   aria-labelledby="Title"
@@ -103,6 +102,7 @@
   transition:fade
   class="popover"
   on:click|stopPropagation
+  on:keydown|stopPropagation
   style="--popover-top: {`${bottom}px`}; --popover-left: {`${left}px`}"
 >
   <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -116,12 +116,14 @@
       <h5
         class={view === "solid" && "active"}
         on:click={() => ((view = "solid"), togglePicker())}
+        on:keydown={() => ((view = "solid"), togglePicker())}
       >
         Solid
       </h5>
       <h5
         class={view === "gradient" && "active"}
         on:click={() => ((view = "gradient"), togglePicker())}
+        on:keydown={() => ((view = "gradient"), togglePicker())}
       >
         Gradient
       </h5>

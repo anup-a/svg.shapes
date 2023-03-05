@@ -18,7 +18,11 @@
 </script>
 
 <div class="main-container">
-  <h1 class="title">SVG · Shapes</h1>
+  <div class="nav-icons">
+    <a href="https://github.com/anup-a/svg.shapes">buy me a coffee</a>
+    <a href="https://github.com/anup-a/svg.shapes">github</a>
+  </div>
+  <h1 class="title">SVG · Shapes <sup style="font-size: 12px">Beta</sup></h1>
   <Editor />
   <div class="svg-grid">
     {#each svgs as file}
@@ -64,8 +68,17 @@
     -webkit-text-fill-color: transparent;
   }
 
+  .main-container .nav-icons {
+    display: flex;
+    margin-top: 1rem;
+    gap: 4rem;
+  }
+  .main-container .nav-icons a {
+    color: #fff;
+    display: inline;
+  }
+
   .title {
-    margin-top: 5%;
     font-family: "Helvetica";
     font-weight: bold;
     font-size: 3em;

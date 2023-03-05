@@ -1,12 +1,14 @@
-import { Svg, SVG } from "@svgdotjs/svg.js";
+import type { Svg } from "@svgdotjs/svg.js";
 import { cssPositionToPercent } from "./cssPositionToPercent";
 
 export function cleanAndFillSvg(
-  svgString: string,
+  svgSource: Svg,
   fillType: "solid" | "gradient",
   fill: any
 ) {
-  const svg = SVG(svgString) as unknown as Svg;
+  if (!svgSource) return;
+
+  const svg = svgSource.clone();
   const children = svg.children();
   let selectedFill: any = fill;
 
