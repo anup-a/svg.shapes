@@ -22,7 +22,7 @@
     <a href="https://github.com/anup-a/svg.shapes">buy me a coffee</a>
     <a href="https://github.com/anup-a/svg.shapes">github</a>
   </div>
-  <h1 class="title">SVG · Shapes <sup style="font-size: 12px">Beta</sup></h1>
+  <h1 class="title">SVG · Shapes</h1>
   <Editor />
   <div class="svg-grid">
     {#each svgs as file}
@@ -35,6 +35,9 @@
       </div>
     {/each}
   </div>
+  <footer>
+    <div>SVG Credits - <a href="https://shapes.framer.website/">Shapes</a></div>
+  </footer>
 </div>
 
 <style>
@@ -73,7 +76,7 @@
     margin-top: 1rem;
     gap: 4rem;
   }
-  .main-container .nav-icons a {
+  a {
     color: #fff;
     display: inline;
   }
@@ -82,6 +85,11 @@
     font-family: "Helvetica";
     font-weight: bold;
     font-size: 3em;
+  }
+
+  footer {
+    margin-top: 5rem;
+    margin-bottom: 1rem;
   }
 
   .svg-grid {

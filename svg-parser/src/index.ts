@@ -1,6 +1,8 @@
 import fs from "fs";
 import path from "path";
 import { parse } from "svg-parser";
+import { optimize } from "svgo";
+import crypto from "crypto";
 
 const SVG_FILES_PATH = path.join(__dirname, "./../factory/input/");
 const SVG_OUTPUT_PATH = path.join(__dirname, "./../factory/output/svg.json");
@@ -19,7 +21,25 @@ let hasUpdate = false;
 files.forEach((file) => {
   const data = fs.readFileSync(SVG_FILES_PATH + file, "utf8");
   if (!svgDataArray.hasOwnProperty(file)) {
-    svgDataArray[file] = data;
+    const result = optimize(data, {
+      multipass: true,
+      plugins: [
+        {
+          name: "preset-default",
+          params: {
+            overrides: {
+              removeViewBox: false,
+              cleanupIds: false,
+              convertShapeToPath: {
+                convertArcs: true,
+              },
+            },
+          },
+        },
+      ],
+    });
+    svgDataArray[file] = result.data;
+    // svgDataArray[file] = data;
     hasUpdate = true;
   }
 });

@@ -94,41 +94,39 @@
 
 <svelte:window on:resize={initPosition} />
 
-<div
-  role="dialog"
-  aria-labelledby="Title"
-  aria-describedby="Description"
-  aria-orientation="vertical"
-  transition:fade
-  class="popover"
-  on:click|stopPropagation
-  on:keydown|stopPropagation
-  style="--popover-top: {`${bottom}px`}; --popover-left: {`${left}px`}"
->
-  <!-- svelte-ignore a11y-click-events-have-key-events -->
+<div>
   <div
-    on:click|stopPropagation={() => dispatch("hide", true)}
-    transition:scale={{ delay: 25, duration: 150, easing: quintOut }}
-    class="backdrop"
-  />
-  <div class="wrapper">
-    <div class="mode-switch">
-      <h5
-        class={view === "solid" && "active"}
-        on:click={() => ((view = "solid"), togglePicker())}
-        on:keydown={() => ((view = "solid"), togglePicker())}
-      >
-        Solid
-      </h5>
-      <h5
-        class={view === "gradient" && "active"}
-        on:click={() => ((view = "gradient"), togglePicker())}
-        on:keydown={() => ((view = "gradient"), togglePicker())}
-      >
-        Gradient
-      </h5>
+    role="dialog"
+    aria-labelledby="Title"
+    aria-describedby="Description"
+    aria-orientation="vertical"
+    transition:fade
+    class="popover"
+    on:click|stopPropagation
+    on:keydown|stopPropagation
+    style="--popover-top: {`${bottom}px`}; --popover-left: {`${left}px`}"
+  >
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+
+    <div class="wrapper">
+      <div class="mode-switch">
+        <h5
+          class={view === "solid" && "active"}
+          on:click={() => ((view = "solid"), togglePicker())}
+          on:keydown={() => ((view = "solid"), togglePicker())}
+        >
+          Solid
+        </h5>
+        <h5
+          class={view === "gradient" && "active"}
+          on:click={() => ((view = "gradient"), togglePicker())}
+          on:keydown={() => ((view = "gradient"), togglePicker())}
+        >
+          Gradient
+        </h5>
+      </div>
+      <div class="pickr" />
     </div>
-    <div class="pickr" />
   </div>
 </div>
 
@@ -164,18 +162,19 @@
   }
 
   .popover {
-    position: fixed;
+    position: relative;
     inset: 0;
     z-index: 997;
   }
 
   .backdrop {
-    position: absolute;
+    position: fixed;
     inset: 0;
+    width: 100%;
+    height: 100%;
   }
 
   .wrapper {
-    position: absolute;
     border: 1px solid rgba(255, 255, 255, 0.25);
 
     top: calc(var(--popover-top) + 10px);

@@ -6,12 +6,13 @@
   import { fill, selectedSvg } from "./store/store";
   import { cleanAndFillSvg } from "./utils/cleanAndFillSvg";
   import { parseGradient } from "./utils/parseGradient";
-  import { onMount } from "svelte";
   import { saveSVG } from "./utils/saveSVG";
+  import Popover from "svelte-easy-popover";
 
   let visible = false;
   let svg: Svg;
   let cssFill;
+  let referenceElement;
 
   selectedSvg.subscribe((s) => {
     svg = s;
@@ -35,17 +36,23 @@
     {@html svg.svg()}
   </div>
 
-  {#if visible}
-    <!-- svelte-ignore a11y-click-events-have-key-events -->
+  <Popover
+    triggerEvents={["click"]}
+    {referenceElement}
+    placement="bottom-start"
+    closeOnClickAway={true}
+    spaceAway={10}
+    on:change={({ detail: { isOpen } }) => (visible = isOpen)}
+  >
     <ColorPicker {visible} {anchor} on:hide={() => (visible = false)} />
-  {/if}
+  </Popover>
 
   <div class="btn-container">
     <div
       class="btn"
-      bind:this={anchor}
       role="button"
       tabindex="0"
+      bind:this={referenceElement}
       on:click={(e) => {
         visible = true;
       }}

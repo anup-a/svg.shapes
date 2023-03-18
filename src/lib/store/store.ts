@@ -2,7 +2,8 @@ import { writable } from "svelte/store";
 import { loadSVG } from "../utils/loadSVGs";
 import svgSource from "./../../assets/svg.json";
 
-const index = 42; // answer to life the universe and everything
+let index = 42; // answer to life the universe and everything
+index += 4;
 
 export const selectedSvg = writable(
   loadSVG(Object.values(svgSource).at(index))

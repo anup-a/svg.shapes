@@ -11,6 +11,7 @@ specifiers:
   sassyfication: ^1.0.3
   svelte: ^3.55.1
   svelte-check: ^2.10.3
+  svelte-easy-popover: ^1.0.0
   svelte-tilt: ^0.0.3
   tslib: ^2.5.0
   typescript: ^4.9.4
@@ -21,6 +22,7 @@ dependencies:
   '@svgdotjs/svg.js': 3.1.2
   gsap: 3.11.4
   nanopop: 2.2.0
+  svelte-easy-popover: 1.0.0
   svelte-tilt: 0.0.3
 
 devDependencies:
@@ -270,6 +272,10 @@ packages:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.15.0
     dev: true
+
+  /@popperjs/core/2.11.6:
+    resolution: {integrity: sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==}
+    dev: false
 
   /@simonwep/pickr/1.4.5:
     resolution: {integrity: sha512-OWbzHbmxBctkZpMIY9ipsB/MzS1VHYKZuMI+jdThsyKnz1a0Es8IzTnQSclMk50dwgbaE5qmoxZnu+JrYKX1Ow==}
@@ -814,6 +820,12 @@ packages:
       - stylus
       - sugarss
     dev: true
+
+  /svelte-easy-popover/1.0.0:
+    resolution: {integrity: sha512-3PFWhKYaGwd18ww7F/gX6VjFgZjABqQY385T0FduWz5WKFx+eTSF2k0x2ZcWIZ5RGuOMPqdHcGCqjLgrvtEZRg==}
+    dependencies:
+      '@popperjs/core': 2.11.6
+    dev: false
 
   /svelte-hmr/0.15.1_svelte@3.55.1:
     resolution: {integrity: sha512-BiKB4RZ8YSwRKCNVdNxK/GfY+r4Kjgp9jCLEy0DuqAKfmQtpL38cQK3afdpjw4sqSs4PLi3jIPJIFp259NkZtA==}

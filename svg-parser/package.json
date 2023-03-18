@@ -4,20 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently \"pnpm run watch-compile\" \"pnpm run watch-dev\"",
-    "watch-compile": "swc src -w --out-dir dist",
+    "dev": "concurrently \"pnpm run compile\" \"pnpm run watch-dev\"",
+    "compile": "swc src -w --out-dir dist",
     "watch-dev": "nodemon --watch \"dist/**/*\" -e js ./dist/index.js",
     "build": "swc src -d dist",
     "start": "NODE_ENV=production node dist/index.js",
     "clean": "rm -rf dist",
     "move": "cp factory/output/svg.json ./../src/assets/",
-    "job": "pnpm run start && pnpm run move"
+    "job": "pnpm run build && pnpm run start && pnpm run move",
+    "regenerate": "rm factory/output/svg.json && pnpm run job"
   },
   "keywords": [],
   "author": "Anup Aglawe",
   "license": "ISC",
   "dependencies": {
-    "svg-parser": "^2.0.4"
+    "svg-parser": "^2.0.4",
+    "svgo": "^3.0.2"
   },
   "devDependencies": {
     "@swc/cli": "^0.1.60",
