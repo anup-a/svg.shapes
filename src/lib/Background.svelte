@@ -2,12 +2,17 @@
   import DotsGrid from "./DotsGrid.svelte";
   import Obsidian from "./../assets/obsidian.svg";
   import tilt from "svelte-tilt";
+  import { isMobileDevice } from "./utils/is-mobile-device";
+
+  const isSmallScreen = typeof window !== "undefined" && isMobileDevice();
 </script>
 
 <div class="background">
   <div class="cursor-layer" />
   <div class="left-bg-pattern">
-    <DotsGrid alignment="left" />
+    {#if !isSmallScreen}
+      <DotsGrid alignment="left" />
+    {/if}
   </div>
   <div class="right-bg-pattern">
     <DotsGrid alignment={"right"} />

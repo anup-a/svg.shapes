@@ -2,17 +2,19 @@
   import type { Svg } from "@svgdotjs/svg.js";
 
   import DownloadIcon from "./../assets/download.svg";
+  import CopyIcon from "./../assets/copy.svg";
   import ColorPicker from "./ColorPicker.svelte";
   import { fill, selectedSvg } from "./store/store";
-  import { cleanAndFillSvg } from "./utils/cleanAndFillSvg";
-  import { parseGradient } from "./utils/parseGradient";
-  import { saveSVG } from "./utils/saveSVG";
+  import { cleanAndFillSvg } from "./utils/clean-fill-svg";
+  import { parseGradient } from "./utils/parse-gradient";
+  import { saveSVG } from "./utils/save-svg";
   import Popover from "svelte-easy-popover";
 
   let visible = false;
   let svg: Svg;
   let cssFill;
   let referenceElement;
+  let copyText = "Copy";
 
   selectedSvg.subscribe((s) => {
     svg = s;
@@ -28,6 +30,17 @@
     );
   });
 
+  const copySVG = () => {
+    navigator.clipboard.writeText(svg.svg()).then(
+      () => {
+        copyText = "Copied !";
+        setTimeout(() => (copyText = "Copy"), 2000);
+      },
+      () => {
+        console.error("Failed to copy");
+      }
+    );
+  };
   let anchor: HTMLElement | undefined = undefined;
 </script>
 
@@ -69,13 +82,18 @@
     <div
       class="btn"
       on:click={() => saveSVG(svg.svg(), "image/svg+xml", "asset")}
-      on:keydown={() => saveSVG(svg.svg(), "image/svg+xml", "asset")}
       role="button"
       tabindex="0"
     >
       <p>Save</p>
       <div class="action-icon">
         <img src={DownloadIcon} alt="download icon" />
+      </div>
+    </div>
+    <div class="btn" on:click={() => copySVG()} role="button" tabindex="0">
+      <p>{copyText}</p>
+      <div class="action-icon">
+        <img src={CopyIcon} alt="download icon" />
       </div>
     </div>
   </div>

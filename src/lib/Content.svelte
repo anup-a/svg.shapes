@@ -1,6 +1,6 @@
 <script>
   import Editor from "./Editor.svelte";
-  import { initSVGs, loadSVG } from "./utils/loadSVGs";
+  import { initSVGs, loadSVG } from "./utils/load-svgs";
   import { selectedSvg } from "./store/store";
   import { gsap } from "gsap";
   import ScrollToPlugin from "gsap/dist/ScrollToPlugin";

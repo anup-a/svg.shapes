@@ -1,5 +1,5 @@
 import type { Svg } from "@svgdotjs/svg.js";
-import { cssPositionToPercent } from "./cssPositionToPercent";
+import { cssPositionToPercent } from "./css-position-to-percent";
 
 export function cleanAndFillSvg(
   svgSource: Svg,

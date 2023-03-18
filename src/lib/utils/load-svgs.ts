@@ -1,6 +1,6 @@
 import { Svg, SVG } from "@svgdotjs/svg.js";
-import presets from "./../../assets/presets.json";
-import svgSource from "./../../assets/svg.json";
+import presets from "../../assets/presets.json";
+import svgSource from "../../assets/svg.json";
 
 export function loadSVG(rawSvg) {
   return SVG(rawSvg) as unknown as Svg;

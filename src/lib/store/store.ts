@@ -1,5 +1,5 @@
 import { writable } from "svelte/store";
-import { loadSVG } from "../utils/loadSVGs";
+import { loadSVG } from "../utils/load-svgs";
 import svgSource from "./../../assets/svg.json";
 
 let index = 42; // answer to life the universe and everything
