@@ -156,12 +156,8 @@
     margin: 2rem;
   }
 
-  .btn-container {
-    width: 20%;
-  }
-
   .btn {
-    width: 100%;
+    width: 85px;
     padding: 0 1.5rem;
     background-color: var(--slate-black-light);
     border: 1px solid rgba(255, 255, 255, 0.25);

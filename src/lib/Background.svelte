@@ -9,14 +9,14 @@
 
 <div class="background">
   <div class="cursor-layer" />
-  <div class="left-bg-pattern">
-    {#if !isSmallScreen}
+  {#if !isSmallScreen}
+    <div class="left-bg-pattern">
       <DotsGrid alignment="left" />
-    {/if}
-  </div>
-  <div class="right-bg-pattern">
-    <DotsGrid alignment={"right"} />
-  </div>
+    </div>
+    <div class="right-bg-pattern">
+      <DotsGrid alignment={"right"} />
+    </div>
+  {/if}
   <div class="obsidian-shape" use:tilt>
     <img src={Obsidian} alt="obsidian shape" class="obsidian-shape-image" />
   </div>
