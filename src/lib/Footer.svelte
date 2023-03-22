@@ -12,6 +12,7 @@
   footer {
     margin-top: 5rem;
     margin-bottom: 1rem;
+    pointer-events: auto;
   }
   a {
     color: #fff;
