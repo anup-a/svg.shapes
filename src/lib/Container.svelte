@@ -7,9 +7,13 @@
 
 <div class="main-container">
   <Nav />
-  <h1 class="title">SVG · Shapes</h1>
+  <h1 class="title" data-aos="fade-up" data-aos-duration="1000">
+    SVG · Shapes
+  </h1>
   <Editor />
-  <h3 class="heading">100+ SVGs. No Attribution required.</h3>
+  <h3 class="heading" data-aos="fade-up" data-aos-duration="1000">
+    100+ SVGs. No Attribution required.
+  </h3>
   <Tiles />
   <Footer />
 </div>

@@ -1,8 +1,7 @@
 <script lang="ts">
   import "@simonwep/pickr/dist/themes/monolith.min.css"; // 'classic' theme
   import { createEventDispatcher, onMount } from "svelte";
-  import { quintOut } from "svelte/easing";
-  import { fade, scale } from "svelte/transition";
+  import { fade } from "svelte/transition";
   import GPickr from "./../gpickr/js/gpickr";
   import { fill } from "./store/store";
 

@@ -1,11 +1,23 @@
 <script lang="ts">
+  import AOS from "aos";
+  import "aos/dist/aos.css";
+  import { onMount } from "svelte";
+  import "./../lib/webcomponent/float-menu";
   import Background from "./lib/Background.svelte";
   import Container from "./lib/Container.svelte";
-  import "./../lib/webcomponent/float-menu";
+
+  onMount(() => {
+    AOS.init();
+  });
 </script>
 
 <main id="main">
-  <float-menu id="float-menu" isDark={true} />
+  <float-menu
+    id="float-menu"
+    isDark={true}
+    data-aos="fade-up"
+    data-aos-duration="1000"
+  />
   <Background />
   <Container />
 </main>

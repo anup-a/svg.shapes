@@ -54,10 +54,13 @@ class GPickr {
     this._root = buildGPickr(opt);
 
     if (!opt.disableGradient) {
-      // Check if conic-gradient is supported
+      // Conic gradient not supported in SVGs
+
+      /* 
       if (CSS.supports("background-image", "conic-gradient(#fff, #fff)")) {
-        this._modes.push("conic");
-      }
+         this._modes.push("conic");
+       }
+      */
 
       opt.el = opt.el.split(/>>/g).reduce((pv, cv, ci, a) => {
         pv = pv.querySelector(cv);
@@ -351,7 +354,6 @@ class GPickr {
    * @param str gradient string
    */
   setGradient(str) {
-    console.log("definitely not here...");
     const parsed = parseGradient(str);
 
     if (!parsed || parsed.stops.length < 2) {
@@ -411,7 +413,6 @@ class GPickr {
    * @returns {{color: *, location: *}[]}
    */
   getStops() {
-    console.log("here...");
     const stops = this._stops.map((v) => ({
       color: v.color,
       location: v.loc,
@@ -423,8 +424,8 @@ class GPickr {
         case "linear":
         case "radial":
           return this.map((v) => `${v.color} ${v.location * 100}%`).join(",");
-        case "conic":
-          return this.map((v) => `${v.color} ${v.location * 360}deg`).join(",");
+        // case "conic":
+        //   return this.map((v) => `${v.color} ${v.location * 360}deg`).join(",");
       }
     };
 

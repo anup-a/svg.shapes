@@ -1,14 +1,14 @@
 <script lang="ts">
   import type { Svg } from "@svgdotjs/svg.js";
 
-  import DownloadIcon from "./../assets/download.svg";
+  import Popover from "svelte-easy-popover";
   import CopyIcon from "./../assets/copy.svg";
+  import DownloadIcon from "./../assets/download.svg";
   import ColorPicker from "./ColorPicker.svelte";
   import { fill, selectedSvg } from "./store/store";
   import { cleanAndFillSvg } from "./utils/clean-fill-svg";
   import { parseGradient } from "./utils/parse-gradient";
   import { saveSVG } from "./utils/save-svg";
-  import Popover from "svelte-easy-popover";
 
   let visible = false;
   let svg: Svg;
@@ -31,7 +31,7 @@
   });
 
   const copySVG = () => {
-    navigator.clipboard.writeText(svg.svg()).then(
+    window?.navigator?.clipboard.writeText(svg.svg()).then(
       () => {
         copyText = "Copied !";
         setTimeout(() => (copyText = "Copy"), 2000);
@@ -44,7 +44,7 @@
   let anchor: HTMLElement | undefined = undefined;
 </script>
 
-<div class="svg-container">
+<div class="svg-container" data-aos="zoom-in" data-aos-duration="1000">
   <div class="svg-image">
     {@html svg.svg()}
   </div>
@@ -149,7 +149,7 @@
   }
 
   :global(.svg-image svg:hover) {
-    transform: rotate(60deg) scale(1.1);
+    transform: scale(1.1);
   }
 
   .svg-container img {
