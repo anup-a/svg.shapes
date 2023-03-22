@@ -18,7 +18,8 @@
     "svelte-check": "^2.10.3",
     "tslib": "^2.5.0",
     "typescript": "^4.9.4",
-    "vite": "^4.0.4"
+    "vite": "^4.0.4",
+    "vite-plugin-compression": "^0.5.1"
   },
   "dependencies": {
     "@simonwep/pickr": "1.4.5",

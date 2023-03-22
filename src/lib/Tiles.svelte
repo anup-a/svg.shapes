@@ -1,10 +1,17 @@
 <script>
   import { gsap } from "gsap";
   import ScrollToPlugin from "gsap/dist/ScrollToPlugin";
+  import { onMount } from "svelte";
   import { selectedSvg } from "./store/store";
-  import { initSVGs } from "./utils/load-svgs";
+  import { initSVGs, loadSVG } from "./utils/load-svgs";
 
-  const svgs = initSVGs(false);
+  let svgs = [];
+
+  onMount(async () => {
+    const response = await fetch("/svg.json");
+    const svgSource = await response.json();
+    svgs = initSVGs(svgSource, false);
+  });
 
   gsap.registerPlugin(ScrollToPlugin);
 

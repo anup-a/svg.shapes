@@ -16,8 +16,10 @@
   let referenceElement;
   let copyText = "Copy";
 
-  selectedSvg.subscribe((s) => {
-    svg = s;
+  selectedSvg.subscribe((s: Svg) => {
+    if (s) {
+      svg = s;
+    }
   });
 
   fill.subscribe((_) => {
@@ -45,9 +47,11 @@
 </script>
 
 <div class="svg-container" data-aos="zoom-in" data-aos-duration="1000">
-  <div class="svg-image">
-    {@html svg.svg()}
-  </div>
+  {#if svg}
+    <div class="svg-image">
+      {@html svg.svg()}
+    </div>
+  {/if}
 
   <Popover
     triggerEvents={["click"]}

@@ -1,6 +1,5 @@
 import { Svg, SVG } from "@svgdotjs/svg.js";
 import presets from "../../assets/presets.json";
-import svgSource from "../../assets/svg.json";
 
 export function loadSVG(rawSvg) {
   const svg = SVG(rawSvg) as unknown as Svg;
@@ -10,6 +9,7 @@ export function loadSVG(rawSvg) {
 }
 
 export function initSVGs(
+  svgSource: object,
   flushDefinitions: boolean = true,
   resize: boolean = true
 ) {
