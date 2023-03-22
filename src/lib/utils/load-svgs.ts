@@ -3,7 +3,10 @@ import presets from "../../assets/presets.json";
 import svgSource from "../../assets/svg.json";
 
 export function loadSVG(rawSvg) {
-  return SVG(rawSvg) as unknown as Svg;
+  const svg = SVG(rawSvg) as unknown as Svg;
+  svg.width(200);
+  svg.height(200);
+  return svg;
 }
 
 export function initSVGs(

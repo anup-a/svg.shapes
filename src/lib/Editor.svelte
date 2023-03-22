@@ -20,8 +20,8 @@
     svg = s;
   });
 
-  // apply svg fill whenever the selected color changes
   fill.subscribe((_) => {
+    // apply svg fill whenever the selected color changes
     cssFill = _.type === "solid" ? _.color : _.gradient._raw;
     svg = cleanAndFillSvg(
       svg,
@@ -82,6 +82,8 @@
     <div
       class="btn"
       on:click={() => saveSVG(svg.svg(), "image/svg+xml", "asset")}
+      on:keypress={(e) =>
+        e.key === "Enter" && saveSVG(svg.svg(), "image/svg+xml", "asset")}
       role="button"
       tabindex="0"
     >
@@ -90,7 +92,13 @@
         <img src={DownloadIcon} alt="download icon" />
       </div>
     </div>
-    <div class="btn" on:click={() => copySVG()} role="button" tabindex="0">
+    <div
+      class="btn"
+      on:click={() => copySVG()}
+      on:keypress={(e) => e.key === "Enter" && copySVG()}
+      role="button"
+      tabindex="0"
+    >
       <p>{copyText}</p>
       <div class="action-icon">
         <img src={CopyIcon} alt="download icon" />
@@ -104,6 +112,14 @@
     display: flex;
     margin-top: 2rem;
     pointer-events: none;
+    gap: 3rem;
+  }
+
+  @media screen and (max-width: 512px) {
+    .svg-container {
+      flex-direction: column;
+      align-items: center;
+    }
   }
 
   .svg-container * {
@@ -142,7 +158,6 @@
 
   .btn-container {
     width: 20%;
-    margin-left: 3rem;
   }
 
   .btn {

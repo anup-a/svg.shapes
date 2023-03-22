@@ -3,7 +3,8 @@ import { loadSVG } from "../utils/load-svgs";
 import svgSource from "./../../assets/svg.json";
 
 let index = 42; // answer to life the universe and everything
-index += 4;
+index *= 2;
+index -= 3;
 
 export const selectedSvg = writable(
   loadSVG(Object.values(svgSource).at(index))

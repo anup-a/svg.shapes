@@ -1,5 +1,5 @@
 <script>
-  import DotsGrid from "./DotsGrid.svelte";
+  import DotsGrid from "./DotsGridBackground.svelte";
   import Obsidian from "./../assets/obsidian.svg";
   import tilt from "svelte-tilt";
   import { isMobileDevice } from "./utils/is-mobile-device";

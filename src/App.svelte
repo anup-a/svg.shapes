@@ -1,14 +1,13 @@
 <script lang="ts">
   import Background from "./lib/Background.svelte";
-  import Content from "./lib/Content.svelte";
+  import Container from "./lib/Container.svelte";
   import "./../lib/webcomponent/float-menu";
 </script>
 
 <main id="main">
   <float-menu id="float-menu" isDark={true} />
-
   <Background />
-  <Content />
+  <Container />
 </main>
 
 <style>
