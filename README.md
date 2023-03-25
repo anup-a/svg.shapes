@@ -14,6 +14,8 @@ SVG Shapes is a tiny tool that offers an extensive collection of 100+ common SVG
 
 - 🧵 All SVGS are pre-compressed with [SVGO](https://github.com/svg/svgo) 
 
+- 🤖 100 % crafted by designers, not AI.
+
 <br />
 
 ![Screenshot 2023-03-25 at 7 55 51 PM](https://user-images.githubusercontent.com/29516633/227723287-299a06f8-9932-41ca-aec2-4e63efa9aad2.png)
