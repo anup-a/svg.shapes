@@ -34,5 +34,5 @@ SVG Shapes is tiny tool that offers a extensive collection of 100+ common SVG sh
 
 ## SVG Credits
 
-- [Monika Michalczyk] https://twitter.com/monmichalczyk
+- [Monika Michalczyk](https://twitter.com/monmichalczyk)
 - [Image by Macrovector](https://www.freepik.com/free-vector/sticky-stars-badge-set-icon-tag-label-symbol-blank-round-cloud_10601818.htm#query=svg%20shapes&position=5&from_view=search&track=ais)
