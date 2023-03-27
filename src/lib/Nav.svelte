@@ -7,6 +7,7 @@
     target="_blank"
     rel="noreferrer">github</a
   >
+  <a href="https://twitter.com/abscubix">twitter</a>
 </div>
 
 <style>
