@@ -38,3 +38,7 @@ SVG Shapes is a tiny tool that offers an extensive collection of 100+ common SVG
 
 - [Monika Michalczyk](https://twitter.com/monmichalczyk)
 - [Image by Macrovector](https://www.freepik.com/free-vector/sticky-stars-badge-set-icon-tag-label-symbol-blank-round-cloud_10601818.htm#query=svg%20shapes&position=5&from_view=search&track=ais)
+
+## Website
+
+<a href="https://svgshapes.in">SVG Shapes with Gradient Customization</a>
