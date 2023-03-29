@@ -8,7 +8,7 @@
 
 SVG Shapes is a tiny tool that offers an extensive collection of 100+ common SVG shapes and with colors and gradients customizations.
 
-- 📦 Copy with reuse <b>without any attribution.</b>
+- 📦 Copy and reuse <b>without any attribution.</b>
 
 - 🌈 Magic like gradient fill on SVGs
 
