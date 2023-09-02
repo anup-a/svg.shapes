@@ -5,7 +5,6 @@
   import "./../lib/webcomponent/float-menu";
   import Background from "./lib/Background.svelte";
   import Container from "./lib/Container.svelte";
-  import Callout from "./lib/Callout.svelte";
 
   onMount(() => {
     AOS.init();
@@ -21,7 +20,6 @@
   />
   <Background />
   <Container />
-  <Callout />
 </main>
 
 <style>
