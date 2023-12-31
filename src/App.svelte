@@ -3,6 +3,7 @@
   import "aos/dist/aos.css";
   import { onMount } from "svelte";
   import "./../lib/webcomponent/float-menu";
+  import "./../lib/webcomponent/banner";
   import Background from "./lib/Background.svelte";
   import Container from "./lib/Container.svelte";
 
@@ -12,6 +13,7 @@
 </script>
 
 <main id="main">
+  <banner-nav id="banner"></banner-nav>
   <float-menu
     id="float-menu"
     isDark={true}
@@ -34,6 +36,12 @@
     /* position: relative; */
   }
 
+  #banner {
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    width: 100%;
+  }
   #float-menu {
     position: absolute;
     z-index: 100;

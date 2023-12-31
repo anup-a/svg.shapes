@@ -23,6 +23,7 @@
     position: absolute;
     top: 0;
     left: 0;
+    margin-top: 80px;
     min-width: 100%;
     display: flex;
     flex-direction: column;
