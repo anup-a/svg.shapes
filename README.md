@@ -20,6 +20,11 @@ SVG Shapes is a tiny tool that offers an extensive collection of 100+ common SVG
 
 ![Screenshot 2023-03-25 at 7 55 51 PM](https://user-images.githubusercontent.com/29516633/227723287-299a06f8-9932-41ca-aec2-4e63efa9aad2.png)
 
+<br/>
+
+Also checkout 🚀 - [Creatica - Generate awesome vector svg backgrounds and patterns](https://creatica.app)
+
+<br/>
 
 ## Submit new SVGs
 
