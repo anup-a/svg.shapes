@@ -47,6 +47,6 @@
     z-index: 100;
     display: block;
     height: 0;
-    top: 0;
+    top: 15%;
   }
 </style>
