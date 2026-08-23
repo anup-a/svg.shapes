@@ -8,7 +8,7 @@
   let svgs = [];
 
   onMount(async () => {
-    const response = await fetch("/svg.json");
+    const response = await fetch(`${import.meta.env.BASE_URL}svg.json`);
     const svgSource = await response.json();
     svgs = initSVGs(svgSource, false);
   });
