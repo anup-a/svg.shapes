@@ -46,4 +46,4 @@ Also checkout 🚀 - [Creatica - Generate awesome vector svg backgrounds and pat
 
 ## Website
 
-<a href="https://svgshapes.in">SVG Shapes with Gradient Customization</a>
+<a href="https://svg-shapes.vercel.app">SVG Shapes with Gradient Customization</a>
